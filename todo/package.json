@@ -20,5 +20,8 @@
   "dependencies": {
     "inquirer": "^7.3.3",
     "lowdb": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/lowdb": "^1.0.11"
   }
 }

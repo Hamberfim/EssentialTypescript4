@@ -5,6 +5,7 @@ import { TodoCollection } from "./todoCollection";
 import lowdb = require("lowdb");
 import FileSync = require("lowdb/adapters/FileSync");
 
+// describes the data that will be stored
 type schemaType = {
   tasks: { id: number; task: string; complete: boolean }[];
 };
@@ -14,7 +15,7 @@ export class JsonTodoCollection extends TodoCollection {
 
   constructor(public userName: string, todoItems: TodoItem[] = []) {
     super(userName, []);
-    this.database = lowdb(new FileSync("Todos.json")); // this line is error out - fixed via newer import syntax
+    this.database = lowdb(new FileSync("TodosDB.json")); // this line is error out - fixed via newer import syntax
     if (this.database.has("tasks").value()) {
       let dbItems = this.database.get("tasks").value();
       dbItems.forEach((item) => this.itemMap.set(item.id, new TodoItem(item.id, item.task, item.complete)));
