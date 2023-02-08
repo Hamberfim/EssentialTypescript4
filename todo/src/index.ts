@@ -11,18 +11,18 @@ let todos: TodoItem[] = [
 let collection: TodoCollection = new TodoCollection("Anthony", todos);
 
 console.clear();
-console.log(`${collection.userName}'s Todo List`);
+console.log(`${collection.userName}'s Todo List` + ` (${collection.getItemCounts().incomplete} items to do)`);
 
-todos.forEach((element) => {
-  // console.log(JSON.stringify(element));
-  element.printDetails();
-});
+// todos.forEach((element) => {
+//   // console.log(JSON.stringify(element));
+//   element.printDetails();
+// });
 
 // let newId: number = collection.addTodo("Walk the dog");
 // let todoItem: TodoItem = collection.getTodoById(newId);
 // todoItem.printDetails();
 
 // console.log(JSON.stringify(todoItem));
-console.log(`\n=== Only Completed ===`);
-collection.removeComplete();
+// console.log(`\n=== Completed List Only ===`);
+// collection.removeComplete();
 collection.getTodoItems(true).forEach((item) => item.printDetails());

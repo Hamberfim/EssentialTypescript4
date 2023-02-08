@@ -1,5 +1,11 @@
 import { TodoItem } from "./todoItem";
 
+// type alias is a way to assign a name to an objects shape type
+type ItemCounts = {
+  total: number;
+  incomplete: number;
+};
+
 export class TodoCollection {
   private nextId: number = 1;
   // use generic types in Map so the compiler knows which types are allowed: Map<datatype, datatype>
@@ -41,5 +47,12 @@ export class TodoCollection {
         this.itemMap.delete(item.id);
       }
     });
+  }
+
+  getItemCounts(): ItemCounts {
+    return {
+      total: this.itemMap.size,
+      incomplete: this.getTodoItems(false).length,
+    };
   }
 }
