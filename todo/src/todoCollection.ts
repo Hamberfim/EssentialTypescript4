@@ -9,7 +9,7 @@ type ItemCounts = {
 export class TodoCollection {
   private nextId: number = 1;
   // use generic types in Map so the compiler knows which types are allowed: Map<datatype, datatype>
-  private itemMap = new Map<number, TodoItem>();
+  protected itemMap = new Map<number, TodoItem>();
 
   // concise constructor syntax
   constructor(public userName: string, todoItems: TodoItem[] = []) {
