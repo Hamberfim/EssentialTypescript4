@@ -11,10 +11,13 @@
     "url": "git+https://github.com/Hamberfim/EssentialTypescript4.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Anthony Hamlin (Hamberfim)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Hamberfim/EssentialTypescript4/issues"
   },
-  "homepage": "https://github.com/Hamberfim/EssentialTypescript4#readme"
+  "homepage": "https://github.com/Hamberfim/EssentialTypescript4#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
 }
