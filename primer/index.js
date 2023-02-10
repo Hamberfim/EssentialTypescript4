@@ -78,4 +78,28 @@ console.log(`${totalPrice} is a ${typeof totalPrice}`);
 // }
 let myTotal = (...numbers) => numbers.reduce((total, value) => total + (Number.isNaN(Number(value)) ? 0 : Number(value)));
 totalPrice = myTotal(15, 25, 35, 55, "pizza", undefined, false);
-console.log(`${totalPrice} is a ${typeof totalPrice}`);
+console.log(`${totalPrice} is a ${typeof totalPrice}\n`);
+
+// arrays
+let mixedDataArr = ["Tim", 34.44];
+mixedDataArr.push(false);
+console.log(mixedDataArr);
+
+let products = ["Glove", "Boots", "Hat"];
+let prices = [25.99, 100.0, 75.0];
+// spread operator
+let prodPriceArr = [...products, ...prices];
+console.log(prodPriceArr);
+prodPriceArr.forEach((element, idx) => console.log(`index: ${idx}, value: ${element}`));
+
+// destructuring
+let [item1, item2, item3, price1, price2, price3] = prodPriceArr;
+console.log(`${item1} is $${price1}. ${item2} is $${price2}. ${item3} is $${price3}.`);
+// ignore items -destructuring
+let [, , i3, , , p3] = prodPriceArr;
+console.log(`${i3} is $${p3.toFixed(2)}.`);
+
+// sort and assign to a new array
+let numbers = [100.25, 100.22, 100.24, 100.02, 100.21, 100.05];
+let [, ...highest] = numbers.sort((a, b) => a - b);
+highest.forEach((numbers, idx) => console.log(`${idx} # ${numbers}`));
