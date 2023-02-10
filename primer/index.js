@@ -41,3 +41,41 @@ console.log(`Tax rate: ${taxRate || 10}%\n`);
 // nullish coalescing
 taxRate = 0; // zero and an empty string coerce to false
 console.log(`Tax rate: ${taxRate ?? 10}%`); // zero can be assigned with the nullish coalescing operator ??
+
+// functions
+function sumPrices(a, b, c) {
+  // a number is the expected return but the parameter arguments can determine the datatype of the return
+  return a + b + c;
+}
+let totalPrice = sumPrices(hatPrice, bootPrice);
+console.log(`${totalPrice} is a ${typeof totalPrice}`); // ends up being a concatenated string rather than a numerical sum
+totalPrice = sumPrices(100, 200, 300);
+console.log(`${totalPrice} is a ${typeof totalPrice}`);
+totalPrice = sumPrices(100, 200); // the 3rd undefined parament argument coalesces a NaN (not a number value)
+console.log(`${totalPrice} is a ${typeof totalPrice}`);
+
+function addPrices(a, b, c = 0) {
+  // a number is the expected return but the parameter arguments can determine the datatype of the return
+  return a + b + c;
+}
+totalPrice = addPrices(10, 20);
+console.log(`${totalPrice} is a ${typeof totalPrice}`);
+
+// rest parameter
+// function additionSum(...numbers) {
+//   return numbers.reduce(function (total, value) {
+//     // validate parameters
+//     return total + (Number.isNaN(Number(value)) ? 0 : Number(value));
+//   }, 0);
+// }
+
+// arrow function
+// function additionSum(...numbers) {
+//   return numbers.reduce((total, value) => {
+//     // validate parameters
+//     return total + (Number.isNaN(Number(value)) ? 0 : Number(value));
+//   }, 0);
+// }
+let myTotal = (...numbers) => numbers.reduce((total, value) => total + (Number.isNaN(Number(value)) ? 0 : Number(value)));
+totalPrice = myTotal(15, 25, 35, 55, "pizza", undefined, false);
+console.log(`${totalPrice} is a ${typeof totalPrice}`);
