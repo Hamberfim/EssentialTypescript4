@@ -99,7 +99,7 @@ let shoes = {
   },
 };
 
-// bind method so the 'this' value stay in it's scope rather than going global
+// use bind method so the 'this' value stays in it's scope rather than going global
 shoes.displayDetails = shoes.displayDetails.bind(shoes);
 // setting a new price triggers the set price() that calculates tax based on the updated price
 shoes.displayDetails();
