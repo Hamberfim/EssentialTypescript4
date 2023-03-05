@@ -107,3 +107,7 @@ console.log(`myHat and TaxProduct: ${myHat instanceof TaxProduct}`);
 console.log(`myHat and Product: ${myHat instanceof Product}`);
 console.log(`myBoots and TaxProduct: ${myBoots instanceof TaxProduct}`);
 console.log(`myBoots and Product: ${myBoots instanceof Product}`);
+
+// === defining static properties and methods ===
+Product.process = (...products) => products.forEach((p) => console.log(p.toString()));
+Product.process(new Product("Gloves", 45.99, 1.2), new Product("Socks", 14.99, 1.2));
