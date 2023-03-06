@@ -5,7 +5,7 @@
 
 // utility to format amounts to U.S. currency
 let currencyUS = Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
-
+console.log("\n==== classes ====");
 /**
  * A class representing a product.
  * @constructor
@@ -25,7 +25,7 @@ class Product {
 }
 
 // === using inheritance in classes
-
+console.log("\n==== Inheritance in classes ====");
 /** TaxedProduct: A class that extends Product to provide the price plus tax.
  * @constructor
  * @param  {string} name - the product name.
@@ -152,3 +152,5 @@ let winter = new GiftThreePack("winter", new Product("Fleece Cap", 12.99), new P
 // [...winter.getGenerator()].forEach((p) => console.log(`Product: ${p}`));
 [...winter].forEach((p) => console.log(`Product: ${p}`)); // using the Symbol.iterator property means the object can be iterated directly
 console.log(`Fleece Gift Pack Total: ${winter.getTotalPrice()}`);
+
+console.log("\n==== Collections ====");
