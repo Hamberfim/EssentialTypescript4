@@ -153,4 +153,82 @@ let winter = new GiftThreePack("winter", new Product("Fleece Cap", 12.99), new P
 [...winter].forEach((p) => console.log(`Product: ${p}`)); // using the Symbol.iterator property means the object can be iterated directly
 console.log(`Fleece Gift Pack Total: ${winter.getTotalPrice()}`);
 
+/** Collections of data are managed by using objects and arrays. Objects store data by a key and arrays by an index
+ *  JavaScript also has dedicated collection objects that provide more structure but are less flexible.
+ */
 console.log("\n==== Collections ====");
+// store data by key using an object
+let data = {
+  // 'ballCap' is the key, it's value  is 'Ball Cap', & 7.99
+  ballCap: new Product("Ball Cap", 7.99),
+  tennisShoes: new Product("Tennis Shoes", 87.99),
+};
+// add new values to the data collection
+data.BaseballGlove = new Product("Baseball Glove", 65.99);
+
+// return an array of keys: Object.keys(object)
+Object.keys(data).forEach((key) => console.log(`Key: ${key}, Value: ${data[key]}`));
+// return an array of values: Object.values(object)
+// Object.values(data).forEach((value) => console.log(`Value: ${value}`));
+
+// storing data by key using map - .set(key, value)  .get(key)  .keys()  . values()  .entries()
+let prodData = new Map();
+prodData.set("ketchup", new Product("ketchup", 3.99));
+prodData.set("mustard", new Product("mustard", 2.99));
+prodData.set("mayo", new Product("mayo", 4.99));
+[...prodData.keys()].forEach((key) => console.log(prodData.get(key).toString()));
+
+// using Symbols for map keys Map allows any value to be used as a key including Symbol which are unique and immutable
+class Product2 {
+  constructor(name, price) {
+    this.id = Symbol();
+    this.name = name;
+    this.price = price;
+  }
+}
+
+class Supplier {
+  constructor(name, productIds) {
+    this.name = name;
+    this.productIds = productIds;
+  }
+}
+let acmeProducts = [new Product2("Fiat", 19000), new Product2("Mini", 22000)];
+let zoomProducts = [new Product2("Fiat", 19000), new Product2("Mini", 22000)];
+
+let products = new Map();
+[...acmeProducts, ...zoomProducts].forEach((p) => products.set(p.id, p));
+let suppliers = new Map();
+
+suppliers.set(
+  "acme",
+  new Supplier(
+    "Acme Co",
+    acmeProducts.map((p) => p.id)
+  )
+);
+suppliers.set(
+  "zoom",
+  new Supplier(
+    "Zoom Co",
+    zoomProducts.map((p) => p.id)
+  )
+);
+
+suppliers.get("acme").productIds.forEach((id) => {
+  console.log(`Name: ${products.get(id).name}`);
+});
+
+// sort data by index/set -  the need to allow or prevent duplicate values is the reason to choose between an array or Set()
+let product = new Product2("Hat", 100);
+let productArray = [];
+let productSet = new Set();
+
+for (let i = 0; i < 5; i++) {
+  productArray.push(product); // stores five of the same value
+  productSet.add(product); // stores only one unique value
+}
+
+console.log(`Array Length: ${productArray.length}`);
+console.log(`Set size: ${productSet.size}`);
+// useful Set methods .add(value)  .entries()  .has(value)  .forEach(callback)
