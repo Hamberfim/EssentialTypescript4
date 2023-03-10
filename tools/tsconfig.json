@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    /* Lang/Env */
+    "target": "ES2018",
+    //"lib": ["ES2018", "dom"],
+
+    /* Modules */
+    "module": "commonjs",
+    "rootDir": "./src",
+
+    /* Emit */
+    "outDir": "./dist",
+    "noEmitOnError": true
+  }
+}
