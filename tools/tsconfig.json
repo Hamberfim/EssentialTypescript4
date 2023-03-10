@@ -2,14 +2,17 @@
   "compilerOptions": {
     /* Lang/Env */
     "target": "ES2018",
-    //"lib": ["ES2018", "dom"],
+    "lib": ["ES2018", "dom"],
 
     /* Modules */
     "module": "commonjs",
     "rootDir": "./src",
 
     /* Emit */
+    "sourceMap": true,
     "outDir": "./dist",
     "noEmitOnError": true
   }
+  // "include": ["./src/**/*.*"],
+  // "exclude": ["node_modules"]
 }
