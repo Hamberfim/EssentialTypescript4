@@ -57,7 +57,63 @@ console.log(twoPackStr);
 
 // using type assertions - type narrowing
 let twoPackAssertNum = calcTwoProdPrice(5.99, 4.99, true) as number; // returned as a string but asserted to number
+// let twoPackAssertNum = <number>calcTwoProdPrice(5.99, 4.99, true)  // alternative syntax
 let twoPackAssertStr = calcTwoProdPrice(12.99, 11.99, false) as string; // returned as a number but asserted to string
 // no type conversion is preformed by a type assertion
 console.log(`twoPackAssertNum ${typeof twoPackAssertNum}`);
 console.log(`twoPackAssertStr ${typeof twoPackAssertStr}`);
+
+// === using a type guard ===
+let toGuard = Math.random() > 0.5 ? "this is my string" : 104;
+if (typeof toGuard === "string") {
+  console.log(`if: ${toGuard.toUpperCase()}`);
+}
+if (typeof toGuard === "number") {
+  console.log(`if: $${toGuard.toFixed(2)}`);
+}
+
+// or using switch statement
+switch (typeof toGuard) {
+  case "number":
+    console.log(`switch: $${toGuard.toFixed(2)}`);
+    break;
+  case "string":
+    console.log(`switch: ${toGuard.toUpperCase()}`);
+    break;
+  // should never be reached
+  default:
+    let value: never = toGuard;
+    console.log(`switch: unexpected type for value ${value}`);
+}
+
+// the 'unknown' type - a safer version of the 'any' type
+let unknownValue: unknown = Math.random() > 0.5 ? "this is another string" : 155.55;
+if (typeof unknownValue === "string") {
+  let val: string = unknownValue as string; // overkill
+  console.log(`if: ${val.toUpperCase()}`);
+}
+if (typeof unknownValue === "number") {
+  let val: number = unknownValue as number; // overkill
+  console.log(`if: $${val.toFixed(2)}`);
+}
+
+// nullable types - TODO: needs review
+let isNull: number | null = Math.random() > 0.5 ? null : 1;
+if (isNull === 1) {
+  console.log(`isNull value = ${isNull}`);
+}
+if (isNull === null) {
+  let value = isNull;
+  console.log(`Unexpected type for value = ${value}`);
+}
+
+function pickFood() {
+  let choice = Math.random() > 0.5 ? "pizza" : null!;
+  return choice;
+}
+let food: string | null = pickFood();
+if (food !== null) {
+  console.log(`My favorite food is ${food}!`);
+} else {
+  console.log(`pickFood() returned a null value`);
+}
