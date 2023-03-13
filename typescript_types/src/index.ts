@@ -38,3 +38,26 @@ console.log(`prodInStock ${prodInStock} is type of ${typeof prodInStock}`);
 /** Add 'declaration' to the tsconfig.json file to reveal the types that are used
  *  The declaration setting tells the compiler to generate files that contain type information alongside the JavaScript code is produces.
  *  These file are helpful when you get a complier error , especially if you can't see an obvious cause */
+
+// === using union types allows the specifying of a set of types ===
+// you can only use the properties and methods that are shared by the defined types of the union unless you use a conditional
+// number and string types only share on one method "toString()" so a conditional is use to determine one of the two return types
+function calcTwoProdPrice(priceA: number, priceB: number, format: boolean): string | number {
+  const total = priceA + priceB;
+  // returns a type intersect of string | number
+  return format ? `$${total.toFixed(2)}` : total;
+}
+let twoPackFormat = calcTwoProdPrice(2.99, 1.99, true);
+let twoPackNoFormat = calcTwoProdPrice(2.99, 1.99, false);
+// make the union intersect explicit
+let twoPackStr: string | number = calcTwoProdPrice(4.99, 6.99, true);
+console.log(twoPackFormat);
+console.log(twoPackNoFormat);
+console.log(twoPackStr);
+
+// using type assertions - type narrowing
+let twoPackAssertNum = calcTwoProdPrice(5.99, 4.99, true) as number; // returned as a string but asserted to number
+let twoPackAssertStr = calcTwoProdPrice(12.99, 11.99, false) as string; // returned as a number but asserted to string
+// no type conversion is preformed by a type assertion
+console.log(`twoPackAssertNum ${typeof twoPackAssertNum}`);
+console.log(`twoPackAssertStr ${typeof twoPackAssertStr}`);
