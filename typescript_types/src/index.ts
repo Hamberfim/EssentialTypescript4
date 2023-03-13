@@ -117,3 +117,6 @@ if (food !== null) {
 } else {
   console.log(`pickFood() returned a null value`);
 }
+// non-null assertion
+// let varNullable = document.querySelector("#myId"); // let varNullable: Element | null
+// let varNonNullAssert = document.querySelector("#myId")!; // let varNonNullAssert: Element
