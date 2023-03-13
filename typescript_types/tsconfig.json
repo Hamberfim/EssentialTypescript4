@@ -9,6 +9,8 @@
     "rootDir": "./src",
 
     /* Emit */
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "declaration": true,
+    "noImplicitAny": true
   }
 }
