@@ -1,5 +1,5 @@
 {
-  /* barebones tsconfig */
+  /* bare bones tsconfig */
   "compilerOptions": {
     /* lang/env */
     "target": "es2020",
