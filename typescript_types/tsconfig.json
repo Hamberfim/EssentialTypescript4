@@ -1,0 +1,14 @@
+{
+  /* barebones tsconfig */
+  "compilerOptions": {
+    /* lang/env */
+    "target": "es2020",
+
+    /* Modules */
+    "module": "commonjs",
+    "rootDir": "./src",
+
+    /* Emit */
+    "outDir": "./dist"
+  }
+}
