@@ -11,9 +11,15 @@
     /* Emit */
     "outDir": "./dist",
     "declaration": true,
+
+    /* Type Checking */
+    "strict": true,
+    "alwaysStrict": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
     "strictNullChecks": true
-  }
+  },
+  "include": ["./src/**/*.*"],
+  "exclude": ["node_modules"]
 }
