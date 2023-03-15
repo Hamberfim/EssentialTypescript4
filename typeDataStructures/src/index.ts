@@ -15,7 +15,7 @@ writePrice("Gloves", calculateTax(glovesPrice));
 writePrice("Umbrella", calculateTax(umbrellaPrice));
 
 console.log("\n=== Parallel typed Arrays ===");
-// an empty array would inferred the 'any[]' type
+// an empty array will inferred the 'any[]' type
 let emptyArray = [];
 let prices: number[] = [100, 75, 42]; // type annotation : number[] or inferred
 let names = ["Hat", "Gloves", "Umbrella"]; // type annotation : string[] or inferred
@@ -50,4 +50,78 @@ hatTuple.forEach((h: string | number) => {
 let [hatName, hatCost] = hatTuple;
 console.log(`Name: ${hatName}, costs: ${hatCost}`);
 
+console.log("\n=== Using Tuples Types ===");
 // using Tuples
+let products: [string, number][] = [
+  ["Hat", 100],
+  ["Gloves", 75],
+  ["Umbrella", 42],
+];
+let tupleUnion: ([string, number] | boolean)[] = [true, false, ...products];
+
+tupleUnion.forEach((element: [string, number] | boolean) => {
+  // instanceof Array used to test/guard for a tuple - a tuple is a kind of array, 'typeof' doesn't work on arrays
+  if (element instanceof Array) {
+    let [str, num] = element;
+    console.log(`Name: ${str}, Price: ${num.toFixed(2)}`);
+  } else if (typeof element === "boolean") {
+    console.log(`Boolean value: ${element}`);
+  }
+});
+
+console.log("\n=== Optional Tuples Types ===");
+// optional tuples
+let shoes: [string, number, number?] = ["Shoes", 100];
+let socks: [string, number, number?] = ["Socks", 25, 10];
+let belt: [string, number, number?] = ["Belt", 75, 20];
+
+// destructured processing loop
+[shoes, socks, belt].forEach((tuple) => {
+  let [name, price, taxRate] = tuple;
+  if (taxRate != undefined) {
+    price += price * (taxRate / 100);
+  }
+  writePrice(name, price);
+});
+
+console.log("\n=== ENUM Types ===");
+enum Product {
+  Hat,
+  Gloves,
+  Umbrella,
+}
+
+const productEnum: [Product, number][] = [
+  [Product.Hat, 85],
+  [Product.Gloves, 65],
+  [Product.Umbrella, 44],
+];
+
+productEnum.forEach((prod: [Product, number]) => {
+  switch (prod[0]) {
+    case Product.Hat:
+      writePrice("Hat", calculateTax(prod[1]));
+      break;
+    case Product.Gloves:
+      writePrice("Gloves", calculateTax(prod[1]));
+      break;
+    case Product.Umbrella:
+      writePrice("Umbrella", calculateTax(prod[1]));
+      break;
+  }
+});
+
+console.log("\n=== Template Literal String Types & Type Aliases ===");
+type CityLocation = "London" | "Paris" | "Chicago";
+function getCity(city: CityLocation): `City: ${CityLocation}` {
+  return `City: ${city}` as `City: ${CityLocation}`;
+}
+
+console.log(getCity("London"));
+
+type numberValues = 10 | 20 | 30 | 40;
+function getRandomValue(): numberValues {
+  return (Math.floor(Math.random() * 4) + 1) as numberValues;
+}
+
+console.log(getRandomValue(), typeof getRandomValue());
